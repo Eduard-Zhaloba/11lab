@@ -1,4 +1,4 @@
-package org.example.task1.task2;
+package org.example.task2;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
