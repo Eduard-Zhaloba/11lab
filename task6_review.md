@@ -47,3 +47,53 @@ Task 2 (Decorator):
 **Аргументація до Завдань 3 та 4 (виконав Дем'ян Мисів):**
 * Патерн Фасад (Завдання 3): Вирішив проблему дублювання складного процесу реєстрації. Фасад CheckInFacade приховав взаємодію з 5 різними підсистемами за одним методом.
 * Патерн Замісник/Proxy (Завдання 4): Віртуальний проксі відкладає дороге завантаження архіву до моменту фактичного запиту телеметрії (Lazy Initialization). Захисний проксі додатково перевіряє роль користувача.
+
+---
+
+# Eduard's Review & Defense / ев'ю та захист дуарда
+
+## 1. Peer Review
+
+**Review of Demian Mysiv's code (Tasks 3 & 4). Reviewer: Eduard Zhaloba**
+
+Task 3 (Facade):
+- Diagram check: The class diagram correctly maps the Facade and the 5 sub-services.
+- Problem check: The system successfully centralizes the check-in process, removing duplication.
+- Runner check: Demo runs flawlessly.
+- REMARK: In CheckInFacade.java, you instantiate the 5 services directly inside the constructor. It would be better to pass these services via constructor parameters (Dependency Injection) to make the Facade easier to unit test.
+
+Task 4 (Proxy):
+- Diagram check: Realization and aggregation links are correct.
+- Problem check: Solves the performance issue (lazy loading) and security issue (role-based access).
+- Runner check: Demo confirms the archive is loaded only once and the Cashier is denied access.
+- REMARK: In RealFlightLog.java, the loadCount variable is not thread-safe. Consider using AtomicInteger.
+
+## 2. Defense Arguments
+
+**Arguments for Tasks 1 & 2 (by Eduard Zhaloba):**
+* Adapter Pattern (Task 1): Used to integrate a third-party weather service with an imperial measurement system. The adapter wrapped the service calls and converted the data to the metric system on the fly. This solved the incompatibility issue without changing the existing control center code.
+* Decorator Pattern (Task 2): Applied to eliminate the exponential growth of classes. The basic ticket is dynamically "wrapped" by service objects at runtime, adding the corresponding cost.
+
+---
+
+## 1. заємне рецензування (Peer Review)
+
+**ев'ю на код студента ем'яна исіва (авдання 3 та 4). ецензент: дуард алоба**
+
+авдання 3 (асад):
+- еревірка діаграми: іаграма класів правильно відображає асад і 5 підсистем.
+- еревірка проблеми: Система успішно централізує процес реєстрації, усуваючи дублювання.
+- еревірка запуску: емо працює бездоганно.
+- Я:  CheckInFacade.java ви створюєте 5 сервісів безпосередньо в конструкторі. раще було б передавати ці сервіси через параметри конструктора (Dependency Injection), щоб асад було легше тестувати.
+
+авдання 4 (амісник/Proxy):
+- еревірка діаграми: в'язки реалізації та агрегації правильні.
+- еревірка проблеми: ирішує проблему продуктивності (ліниве завантаження) та безпеки (доступ на основі ролей).
+- еревірка запуску: емо підтверджує, що архів завантажується лише один раз, а асиру відмовлено в доступі.
+- Я:  RealFlightLog.java змінна loadCount не є потокобезпечною. озгляньте можливість використання AtomicInteger.
+
+## 2. ргументація вибору шаблонів для захисту
+
+**ргументація до авдань 1 та 2 (виконав дуард алоба):**
+* атерн даптер (авдання 1): икористано для інтеграції стороннього метеосервісу з імперською системою мір. даптер обгорнув виклики сервісу та конвертував дані в метричну систему "на льоту". е дозволило вирішити проблему несумісності без зміни коду.
+* атерн екоратор (авдання 2): астосовано для усунення експоненційного зростання кількості класів. азовий квиток динамічно "обгортається" об'єктами-послугами під час виконання програми, додаючи відповідну вартість.
