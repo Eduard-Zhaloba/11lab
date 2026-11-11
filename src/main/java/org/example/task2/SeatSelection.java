@@ -4,7 +4,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class SeatSelection extends TicketDecorator {
-    public SeatSelection(Ticket ticket) { super(ticket); }
+    public SeatSelection(Ticket ticket) {
+        super(ticket);
+    }
 
     private void log(String event) {
         String time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
